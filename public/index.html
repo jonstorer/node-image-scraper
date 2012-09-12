@@ -8,22 +8,24 @@
         $("form").submit(function(event){
           event.preventDefault();
           form = $(event.target)
-          url = form.attr('action')
-          $.post(url, form.serialize(), function(images){
+          $('#spinner').show();
+          $.post(form.attr('action'), form.serialize(), function(images){
             $('#images').html('');
             $.each(images, function(index, image){
               $('#images').append('<img src="' + image + '"><br>')
             });
+            $('#spinner').hide();
           });
         });
       });
     </script>
   </head>
   <body>
-    <form action='/api/v1/scrape' method=get>
+    <form action='/api/v1/scrape' method=post>
       <label for='url'> Url </label>
       <input type='text' name='url' >
       <input type='submit' value='scrape !' >
+      <img src='/images/spinner.gif' style='display:none;' id='spinner'>
     </form>
 
     <div id='images'> </div>
