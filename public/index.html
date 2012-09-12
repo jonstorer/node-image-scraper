@@ -1,0 +1,31 @@
+<html>
+  <head>
+    <title> Node Image Parser </title>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js">
+    </script>
+    <script type='text/javascript'>
+      $(function() {
+        $("form").submit(function(event){
+          event.preventDefault();
+          form = $(event.target)
+          url = form.attr('action')
+          $.post(url, form.serialize(), function(images){
+            $('#images').html('');
+            $.each(images, function(index, image){
+              $('#images').append('<img src="' + image + '"><br>')
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form action='/api/v1/scrape' method=get>
+      <label for='url'> Url </label>
+      <input type='text' name='url' >
+      <input type='submit' value='scrape !' >
+    </form>
+
+    <div id='images'> </div>
+  </body>
+</html>

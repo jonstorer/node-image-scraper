@@ -3,10 +3,13 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app"
+    "start": "node waldo"
   },
   "dependencies": {
+    "cheerio": "latest",
+    "coffee-script": "latest",
     "express": "3.0.0rc4",
-    "jade": "*"
+    "request": "latest",
+    "sugar": "latest"
   }
 }
